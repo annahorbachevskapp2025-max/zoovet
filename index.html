@@ -43,6 +43,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Власний CSS -->
+  <!-- ===== CSS підключених бібліотек (ЛР10) ===== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-50 font-sans text-slate-900 antialiased">
@@ -103,6 +106,9 @@
         </h1>
         <p class="mt-4 max-w-prose text-base text-slate-700 lg:text-lg">
           Приймаємо щодня. Дізнайтеся орієнтовну вартість вакцинації чи операції ще до візиту — без дзвінків і очікування.
+        </p>
+        <p class="mt-3 font-heading text-lg font-semibold text-link lg:text-xl">
+          Сьогодні в клініці: <span id="typed-text"></span>
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#calculator" class="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-brand px-6 py-3 font-semibold text-slate-900 transition hover:bg-peri focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link active:scale-95 sm:w-auto">Розрахувати вартість</a>
@@ -437,23 +443,150 @@
   </section>
 
   <!-- ===================== 7. ВІДГУКИ ===================== -->
+  <!-- ===================== 6.1 ГАЛЕРЕЯ — Fancybox v5 (ЛР10) ===================== -->
+  <section id="gallery" class="border-t border-slate-200 bg-white py-12 md:py-20" aria-labelledby="gallery-title">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 id="gallery-title" class="mb-2 font-heading text-2xl font-bold sm:text-3xl">Галерея клініки</h2>
+      <p class="mb-8 text-slate-600">Натисніть на фото, щоб роздивитися його у великому вигляді.</p>
+
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+        <a href="image/gallery1.jpg" data-fancybox="zoovet-gallery" data-caption="Оглядовий кабінет"
+           class="group block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link">
+          <img src="image/gallery1.jpg" alt="Оглядовий кабінет клініки ZooVet" loading="lazy" width="900" height="1200"
+               class="aspect-[3/4] w-full object-cover transition duration-300 group-hover:scale-105">
+        </a>
+        <a href="image/gallery2.jpg" data-fancybox="zoovet-gallery" data-caption="Операційна"
+           class="group block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link">
+          <img src="image/gallery2.jpg" alt="Операційна клініки ZooVet" loading="lazy" width="900" height="1200"
+               class="aspect-[3/4] w-full object-cover transition duration-300 group-hover:scale-105">
+        </a>
+        <a href="image/gallery3.jpg" data-fancybox="zoovet-gallery" data-caption="Кабінет УЗД"
+           class="group block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link">
+          <img src="image/gallery3.jpg" alt="Кабінет ультразвукової діагностики" loading="lazy" width="900" height="1200"
+               class="aspect-[3/4] w-full object-cover transition duration-300 group-hover:scale-105">
+        </a>
+        <a href="image/gallery4.jpg" data-fancybox="zoovet-gallery" data-caption="Зал для котів"
+           class="group block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link">
+          <img src="image/gallery4.jpg" alt="Окремий зал очікування для котів" loading="lazy" width="900" height="1200"
+               class="aspect-[3/4] w-full object-cover transition duration-300 group-hover:scale-105">
+        </a>
+        <a href="image/gallery5.jpg" data-fancybox="zoovet-gallery" data-caption="Лабораторія"
+           class="group block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link">
+          <img src="image/gallery5.jpg" alt="Лабораторія клініки ZooVet" loading="lazy" width="900" height="1200"
+               class="aspect-[3/4] w-full object-cover transition duration-300 group-hover:scale-105">
+        </a>
+        <a href="image/gallery6.jpg" data-fancybox="zoovet-gallery" data-caption="Стаціонар"
+           class="group block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link">
+          <img src="image/gallery6.jpg" alt="Стаціонар для тварин після операції" loading="lazy" width="900" height="1200"
+               class="aspect-[3/4] w-full object-cover transition duration-300 group-hover:scale-105">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7. ВІДГУКИ — слайдер Swiper.js (ЛР10) ===================== -->
   <section id="reviews" class="bg-white py-12 md:py-20" aria-labelledby="reviews-title">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <h2 id="reviews-title" class="mb-2 font-heading text-2xl font-bold sm:text-3xl">Відгуки власників</h2>
       <p class="mb-8 text-sm text-slate-500">* Відгуки зібрані від реальних клієнтів клініки.</p>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <figure class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
-          <blockquote><p class="text-slate-800">«Порахувала вартість стерилізації вдома, у клініці сума збіглася. Жодних сюрпризів.»</p></blockquote>
-          <figcaption class="mt-4 text-sm text-slate-600">— Софія Р., власниця кішки</figcaption>
-        </figure>
-        <figure class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
-          <blockquote><p class="text-slate-800">«Лікар спокійно пояснив, що робитимуть із собакою, і ми пішли додому того ж дня.»</p></blockquote>
-          <figcaption class="mt-4 text-sm text-slate-600">— Іван Т., власник лабрадора</figcaption>
-        </figure>
-        <figure class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
-          <blockquote><p class="text-slate-800">«Окремий зал для котів — наш Мурчик майже не нервував. Дякуємо!»</p></blockquote>
-          <figcaption class="mt-4 text-sm text-slate-600">— Марина Л., власниця кота</figcaption>
-        </figure>
+
+      <div class="swiper reviews-swiper px-1 pb-14">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide h-auto">
+          <figure class="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+            <div class="mb-3 text-lg tracking-widest text-orchid" role="img" aria-label="Оцінка 5 з 5">★★★★★</div>
+            <blockquote class="flex-1">
+              <p class="text-slate-800">«Порахувала вартість стерилізації вдома, у клініці сума збіглася. Жодних сюрпризів.»</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush font-heading font-bold text-link" aria-hidden="true">СР</span>
+              <span class="text-sm">
+                <span class="font-semibold text-slate-800">Софія Р.</span><br>
+                <span class="text-slate-500">власниця кішки</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="swiper-slide h-auto">
+          <figure class="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+            <div class="mb-3 text-lg tracking-widest text-orchid" role="img" aria-label="Оцінка 5 з 5">★★★★★</div>
+            <blockquote class="flex-1">
+              <p class="text-slate-800">«Лікар спокійно пояснив, що робитимуть із собакою, і ми пішли додому того ж дня.»</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush font-heading font-bold text-link" aria-hidden="true">ІТ</span>
+              <span class="text-sm">
+                <span class="font-semibold text-slate-800">Іван Т.</span><br>
+                <span class="text-slate-500">власник лабрадора</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="swiper-slide h-auto">
+          <figure class="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+            <div class="mb-3 text-lg tracking-widest text-orchid" role="img" aria-label="Оцінка 5 з 5">★★★★★</div>
+            <blockquote class="flex-1">
+              <p class="text-slate-800">«Окремий зал для котів — наш Мурчик майже не нервував. Дякуємо!»</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush font-heading font-bold text-link" aria-hidden="true">МЛ</span>
+              <span class="text-sm">
+                <span class="font-semibold text-slate-800">Марина Л.</span><br>
+                <span class="text-slate-500">власниця кота</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="swiper-slide h-auto">
+          <figure class="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+            <div class="mb-3 text-lg tracking-widest text-orchid" role="img" aria-label="Оцінка 5 з 5">★★★★★</div>
+            <blockquote class="flex-1">
+              <p class="text-slate-800">«Записалися через форму на сайті ввечері, зранку вже передзвонили й підтвердили час.»</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush font-heading font-bold text-link" aria-hidden="true">ОД</span>
+              <span class="text-sm">
+                <span class="font-semibold text-slate-800">Олег Д.</span><br>
+                <span class="text-slate-500">власник вівчарки</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="swiper-slide h-auto">
+          <figure class="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+            <div class="mb-3 text-lg tracking-widest text-orchid" role="img" aria-label="Оцінка 5 з 5">★★★★★</div>
+            <blockquote class="flex-1">
+              <p class="text-slate-800">«Робили УЗД морській свинці. Не кожна клініка береться за гризунів — тут узялися без питань.»</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush font-heading font-bold text-link" aria-hidden="true">КВ</span>
+              <span class="text-sm">
+                <span class="font-semibold text-slate-800">Катерина В.</span><br>
+                <span class="text-slate-500">власниця морської свинки</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="swiper-slide h-auto">
+          <figure class="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-md">
+            <div class="mb-3 text-lg tracking-widest text-orchid" role="img" aria-label="Оцінка 5 з 5">★★★★★</div>
+            <blockquote class="flex-1">
+              <p class="text-slate-800">«Привезли кота вночі з отруєнням. Прийняли одразу, вранці він уже їв.»</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blush font-heading font-bold text-link" aria-hidden="true">АМ</span>
+              <span class="text-sm">
+                <span class="font-semibold text-slate-800">Андрій М.</span><br>
+                <span class="text-slate-500">власник кота</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev" aria-label="Попередній відгук"></div>
+        <div class="swiper-button-next" aria-label="Наступний відгук"></div>
       </div>
     </div>
   </section>
@@ -777,8 +910,13 @@
   })();
 </script>
 
+<!-- ===== JS підключених бібліотек (ЛР10) ===== -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="plugins.js"></script>
+
 <!-- Валідація форми (ЛР9) -->
 <script src="validation.js"></script>
 
 </body>
-</html>
